@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HungryModelClient",
+            "request": "launch",
+            "mainClass": "singleton.HungryModelClient",
+            "projectName": " gof23_4162b54"
+        }
+    ]
+}
