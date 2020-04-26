@@ -6,9 +6,10 @@ import java.io.Serializable;
  * 懒汉式测试
  */
 public class SingletonDemo02 implements Serializable {
-    private  static SingletonDemo02 instance;//懒加载
+    //懒加载
+    private  static SingletonDemo02 instance;
     private SingletonDemo02(){
-        //防止反射通过反射实例化对象而跳过getInstace
+        //防止反射通过反射实例化对象而跳过getInstance方法
         if(instance !=null){
             throw new RuntimeException("Object has been instanced!!!");
         }
