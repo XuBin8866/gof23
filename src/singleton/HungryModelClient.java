@@ -26,7 +26,7 @@ public class HungryModelClient {
         //反序列化获取多个对象
 
         Class<SingletonDemo02> clazz=SingletonDemo02.class;
-        Constructor<SingletonDemo02> c=clazz.getDeclaredConstructor(null);
+        Constructor<SingletonDemo02> c=clazz.getDeclaredConstructor((Class<?>) null);
         c.setAccessible(true);
         Object o3=c.newInstance();
         //
