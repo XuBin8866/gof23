@@ -25,11 +25,7 @@ public class HungryModelClient {
         System.out.println(s1==s2);*/
         //反序列化获取多个对象
 
-        Class<SingletonDemo02> clazz=SingletonDemo02.class;
-        Constructor<SingletonDemo02> c=clazz.getDeclaredConstructor((Class<?>) null);
-        c.setAccessible(true);
-        Object o3=c.newInstance();
-        //
+        SingletonDemo02 o3=SingletonDemo02.getInstance();
         FileOutputStream fos=new FileOutputStream("D:\\Object.txt");
         ObjectOutputStream oos=new ObjectOutputStream(fos);
         oos.writeObject(o3);

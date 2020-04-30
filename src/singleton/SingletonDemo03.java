@@ -1,34 +1,46 @@
 package singleton;
 
 /**
- * 双重检测锁Old，在实例化时构建了又构建了一个实例对象的引用，进行了两次双重检查
+ * 双重检测锁
+ * @author Administrator
  */
 public class SingletonDemo03 {
-    private static SingletonDemo03 instance;
+    private static volatile SingletonDemo03 instance;
     private  SingletonDemo03(){}
 
 
 
     /**
-     * 结合懒汉式和饿汉式的优势，但由于jvm底层问题可能会出bug（指令重排），将实例改为 volatile可避免指令重排
-     * 进行了两次双重检查，视频没有进行讲解
-     * @return
+     * 结合懒汉式和饿汉式的优势，但由于jvm底层（指令重排）问题可能会出bug，将实例改为 volatile可避免指令重排
+     * @return 单例对象
      */
-    public static SingletonDemo03 getInstance(){
-        if(instance==null){
-            SingletonDemo03 sc;
+    private static SingletonDemo03 getInstance(){
+        if(null!=instance){
             synchronized (SingletonDemo03.class){
-                sc=instance;
-                if(sc==null){
-                    synchronized (SingletonDemo03.class){
-                        if(sc==null){
-                            sc=new SingletonDemo03();
-                        }
-                    }
-                    instance=sc;
+                if(null!=instance){
+                    instance=new SingletonDemo03();
                 }
             }
         }
         return instance;
     }
+
+//    //这个有问题，已经加锁后就不需要判断了，只有一个线程能获取到这个类
+//    public static SingletonDemo03 getInstance(){
+//        if(instance==null){
+//            SingletonDemo03 sc;
+//            synchronized (SingletonDemo03.class){
+//                sc=instance;
+//                if(sc==null){
+//                    synchronized (SingletonDemo03.class){
+//                        if(sc==null){
+//                            sc=new SingletonDemo03();
+//                        }
+//                    }
+//                    instance=sc;
+//                }
+//            }
+//        }
+//        return instance;
+//    }
 }
