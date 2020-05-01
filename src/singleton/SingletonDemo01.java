@@ -1,10 +1,12 @@
 package singleton;
 
+import java.io.Serializable;
+
 /**
  * 测试饿汉式代理模式
  * @author Administrator
  */
-public class SingletonDemo01 {
+public class SingletonDemo01 implements Serializable {
     /**
      * 一旦有加载了类就new出对象，类加载时对象就加载，天然线程安全
      */

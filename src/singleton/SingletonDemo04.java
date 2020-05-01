@@ -29,9 +29,11 @@ public class SingletonDemo04 {
     }
 
     /**
-     * 该类类的构造方法
-     * 第一次调用构造方法进行判断时SingletonClassInstance.instance对象还没来得及实例化，判断结果为false，不抛出异常
-     * 然后由于SingletonClassInstance.instance在这次if判断中被调用了，SingletonClassInstance类进行加载，instance
+     * 该类的构造方法
+     +
+     * 第一次调用构造方法进行判断时第一次调用SingletonClassInstance.instance对象，SingletonClassInstance类开始加载，instance对象实例化，第二次调用构造方法，进行判断，由于此时正是instance实例化的过程中，instance仍然为空，判断结果为false，不抛出异常，完成实例化。
+     +
+     * 此时回到第一次调用构造方法的if判断中，instance实例化完成，判断结果为true，抛出异常
      */
     private SingletonDemo04() {
         System.out.println("外部类开始实例化！！！");
