@@ -12,7 +12,7 @@ public class SingletonDemo02 implements Serializable {
      * 懒加载
      */
     private  static SingletonDemo02 instance;
-    private SingletonDemo02(){
+    private SingletonDemo02(String test){
         //防止反射通过反射实例化对象而跳过getInstance方法
         if(instance !=null){
             throw new RuntimeException("Object has been instanced!!!");
@@ -25,7 +25,7 @@ public class SingletonDemo02 implements Serializable {
      */
     public static synchronized SingletonDemo02 getInstance(){
         if(instance==null){
-            instance=new SingletonDemo02();
+            instance=new SingletonDemo02("ttt");
         }
         return instance;
     }
