@@ -27,12 +27,12 @@ public class OrderServiceCglibProxy implements MethodInterceptor {
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         before(objects[0]);
         Object object=methodProxy.invokeSuper(o,objects);
-        System.out.println("Proxy after method");
+        System.out.println("CGlib Proxy after method");
         return object;
     }
 
     private void before(Object obj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        System.out.println("Proxy before method");
+        System.out.println("CGlib Proxy before method");
         Long time= (Long) obj.getClass().getDeclaredMethod("getCreateTime").invoke(obj);
         int dbRouter= Integer.parseInt(yearFormat.format(new Date(time)));
         System.out.println("静态代理类自动分配到DB_"+dbRouter+"数据源处理数据");
