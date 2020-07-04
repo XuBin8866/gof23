@@ -1,8 +1,5 @@
 package proxy.datasource;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +7,7 @@ import java.util.Date;
 /**
  * @author xxbb
  */
+
 public class OrderServiceStaticProxy implements IOrderSerivce{
     private IOrderSerivce orderService;
 
@@ -34,5 +32,26 @@ public class OrderServiceStaticProxy implements IOrderSerivce{
         int res=orderService.createOrder(order);
         System.out.println("Proxy after method");
         return res;
+    }
+
+    public OrderServiceStaticProxy(IOrderSerivce orderService, SimpleDateFormat yearFormat) {
+        this.orderService = orderService;
+        this.yearFormat = yearFormat;
+    }
+
+    public IOrderSerivce getOrderService() {
+        return orderService;
+    }
+
+    public void setOrderService(IOrderSerivce orderService) {
+        this.orderService = orderService;
+    }
+
+    public SimpleDateFormat getYearFormat() {
+        return yearFormat;
+    }
+
+    public void setYearFormat(SimpleDateFormat yearFormat) {
+        this.yearFormat = yearFormat;
     }
 }

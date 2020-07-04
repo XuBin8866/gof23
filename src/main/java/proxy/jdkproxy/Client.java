@@ -15,8 +15,8 @@ import java.lang.reflect.Proxy;
  * @author xxbb
  */
 public class Client {
-    public static void main(String[] args)  {
-
+    public static void main(String[] args) throws Exception {
+        System.out.println("Client");
     }
     public void proxyClassTest() throws IOException{
         IOrderSerivce orderService= (IOrderSerivce) new OrderServiceDynamicProxy(new OrderService()).getInstance();
@@ -31,7 +31,7 @@ public class Client {
         OrderDao dao= (OrderDao) Proxy.newProxyInstance(preDao.getClass().getClassLoader(), preDao.getClass().getInterfaces(), (proxy, method, args) -> {
             System.out.println("测试基于接口的动态代理");
 
-            return method.invoke(preDao,args);
+            return method.invoke(preDao, args);
         });
         dao.insert(new Order());
     }
